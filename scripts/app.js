@@ -33,7 +33,7 @@ function NarrowItDownController(MenuSearchService) {
   ctrl.found = false;
 
   ctrl.isEmpty = function () {
-    var result = ((ctrl.searchTerm == "") || (ctrl.found.length == 0));
+    var result = (ctrl.searched && ((ctrl.searchTerm == "") || (ctrl.found.length == 0)));
     return result;
   }
 
@@ -42,13 +42,14 @@ function NarrowItDownController(MenuSearchService) {
   }
 
   ctrl.search = function () {
+
     if (!ctrl.searchTerm == "") {
 
         var promise = MenuSearchService.getMatchedMenuItems(ctrl.searchTerm);
 
         promise.then(function (response) {
           ctrl.found = response.data.matchedItems;
-
+          ctrl.searched = true;
           return response;
        })
        .catch(function (error) {
@@ -57,6 +58,7 @@ function NarrowItDownController(MenuSearchService) {
     }
     else {
       ctrl.searchTerm = "";
+      ctrl.searched = true;
     }
   }
 
@@ -67,6 +69,8 @@ function NarrowItDownController(MenuSearchService) {
   ctrl.inputKeyPress = function (keyEvent) {
   if (keyEvent.which === 13)
     ctrl.search();
+  else
+    ctrl.searched = false;
   }
 
 }

@@ -64,6 +64,7 @@ function NarrowItDownController(MenuSearchService) {
 
   ctrl.removeItem = function (itemIndex) {
     ctrl.found.splice(itemIndex, 1);
+    ctrl.searched = false;
   }
 
   ctrl.inputKeyPress = function (keyEvent) {

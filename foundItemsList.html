@@ -1,0 +1,36 @@
+<div>
+  <ul>
+    <li ng-if="ctrl.isListLoaded()">
+      <div class="row heading">
+          <div class="col-md-2">
+            Name
+          </div>
+          <div class="col-md-1">
+            Short name
+          </div>
+          <div class="col-md-7">
+            Description
+          </div>
+          <div class="col-md-2">
+          </div>
+      </div>
+    </li>
+    <li ng-repeat="item in ctrl.found">
+      <div class="row">
+          <span class="col-md-2">
+            {{ item.name }}
+          </span>
+          <span class="col-md-1">
+            {{ item.short_name }}
+          </span>
+          <span class="col-md-7">
+            {{ item.description }}
+          </span>
+          <span class="col-md-2">
+            <button ng-click="ctrl.onRemove({index: $index});">Don't want this one!</button>
+          </span>
+      </div>
+    </li>
+  </ul>
+</div>
+<!-- <div class="error" ng-if="ctrl.cookiesInList()">Nothing found!</div> -->
